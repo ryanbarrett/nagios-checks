@@ -39,6 +39,7 @@ from dateutil.tz import *
 import time
 import socket
 import boto
+from boto.s3.connection import OrdinaryCallingFormat #Enables use of upper/mixed case bucket names (nonstandard dns naming)
 import argparse
 import re
 
@@ -95,7 +96,7 @@ if (args.debug):
 if (args.debug):
     print "DEBUG: Connecting to S3"
 
-s3 = boto.connect_s3()
+s3 = boto.connect_s3(calling_format=OrdinaryCallingFormat())
 
 if (args.debug):
     print "DEBUG: S3 Connection: %s" % s3
